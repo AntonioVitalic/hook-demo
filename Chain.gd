@@ -3,7 +3,7 @@ This script controls the chain.
 """
 extends Node2D
 
-onready var links = $Links		# A slightly easier reference to the links
+@onready var links = $Links		# A slightly easier reference to the links
 var direction := Vector2(0,0)	# The direction in which the chain was shot
 var tip := Vector2(0,0)			# The global position the tip should be in
 								# We use an extra var for this, because the chain is 
@@ -34,8 +34,8 @@ func _process(_delta: float) -> void:
 		return	# Not visible -> nothing to draw
 	var tip_loc = to_local(tip)	# Easier to work in local coordinates
 	# We rotate the links (= chain) and the tip to fit on the line between self.position (= origin = player.position) and the tip
-	links.rotation = self.position.angle_to_point(tip_loc) - deg2rad(90)
-	$Tip.rotation = self.position.angle_to_point(tip_loc) - deg2rad(90)
+	links.rotation = self.position.angle_to_point(tip_loc) - deg_to_rad(90)
+	$Tip.rotation = self.position.angle_to_point(tip_loc) - deg_to_rad(90)
 	links.position = tip_loc						# The links are moved to start at the tip
 	links.region_rect.size.y = tip_loc.length()		# and get extended for the distance between (0,0) and the tip
 
